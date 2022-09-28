@@ -30,14 +30,14 @@ void SetSpeed(struct MovingSystem* mot, enum MotorsSide side, int percentage)
 	switch (side)
 	{
 	case Left:
-		analogWrite(percentage >= 0 ? mot->motor_left->forward_pin : mot->motor_left->backward_pin, percentage >= 0 ? mapp(percentage, -100, 0, 255, 0) : mapp(percentage, 0, 100, 0, 255));
+		analogWrite(percentage >= 0 ? mot->motor_left->forward_pin : mot->motor_left->backward_pin, percentage < 0 ? mapp(percentage, -100, 0, 255, 0) : mapp(percentage, 0, 100, 0, 255));
 		break;
 	case Both:
-		analogWrite(percentage >= 0 ? mot->motor_left->forward_pin : mot->motor_left->backward_pin, percentage >= 0 ? mapp(percentage, -100, 0, 255, 0) : mapp(percentage, 0, 100, 0, 255));
-		analogWrite(percentage >= 0 ? mot->motor_right->forward_pin : mot->motor_right->backward_pin, percentage >= 0 ? mapp(percentage, -100, 0, 255, 0): mapp(percentage, 0, 100, 0, 255));
+		analogWrite(percentage >= 0 ? mot->motor_left->forward_pin : mot->motor_left->backward_pin, percentage < 0 ? mapp(percentage, -100, 0, 255, 0) : mapp(percentage, 0, 100, 0, 255));
+		analogWrite(percentage >= 0 ? mot->motor_right->forward_pin : mot->motor_right->backward_pin, percentage < 0 ? mapp(percentage, -100, 0, 255, 0): mapp(percentage, 0, 100, 0, 255));
 		break;
 	case Right:
-		analogWrite(percentage >= 0 ? mot->motor_right->forward_pin : mot->motor_right->backward_pin, percentage >= 0 ? mapp(percentage, -100, 0, 255, 0) : mapp(percentage, 0, 100, 0, 255));
+		analogWrite(percentage >= 0 ? mot->motor_right->forward_pin : mot->motor_right->backward_pin, percentage < 0 ? mapp(percentage, -100, 0, 255, 0) : mapp(percentage, 0, 100, 0, 255));
 	default:
 		break;
 	}
@@ -88,10 +88,10 @@ void TurningOnMOving(struct MovingSystem* mot, enum MotorsSide side, int percent
 	switch (side)
 	{
 	case Left:
-		analogWrite(mot->motor_left->forward_pin, map(percentage, 0, 100, 255, 0));
+		analogWrite(mot->motor_left->forward_pin, mapp(percentage, 0, 100, 255, 0));
 		break;
 	case Right:
-		analogWrite(mot->motor_right->forward_pin, map(percentage, 0, 100, 255, 0));
+		analogWrite(mot->motor_right->forward_pin, mapp(percentage, 0, 100, 255, 0));
 		break;
 	default:
 		break;

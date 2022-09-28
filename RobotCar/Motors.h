@@ -11,6 +11,11 @@
 
 #pragma region MotorsPreferences
 
+#define L_MOTOR_FORWARD 3
+#define L_MOTOR_BACKWARD 11
+
+#define R_MOTOR_FORWARD 10
+#define R_MOTOR_BACKWARD 9
 
 enum MotorsSide
 {

@@ -6,88 +6,123 @@
 			All non-arduino files created by visual micro and all visual studio project or solution files can be freely deleted and are not required to compile a sketch (do not delete your own code!).
 			Note: debugger breakpoints are stored in '.sln' or '.asln' files, knowledge of last uploaded breakpoints is stored in the upload.vmps.xml file. Both files are required to continue a previous debug session without needing to compile and upload again
 	
-	Hardware: ATmega328P (Old Bootloader) (Arduino Nano)                                                                 (nano_atmega328old), Platform=avr, Package=arduino
+	Hardware: Raspberry Pi Pico W                                                                                                            (rp2040_rpipicow), Platform=rp2040, Package=rp2040
 */
 
 #if defined(_VMICRO_INTELLISENSE)
 
 #ifndef _VSARDUINO_H_
 #define _VSARDUINO_H_
-#define __AVR_atmega328p__ 1
-#define __AVR_ATmega328P__ 1
-#define __AVR_ATmega328p__ 1
 #define _VMDEBUG 1
-#define F_CPU 16000000L
+#define CFG_TUSB_MCU OPT_MCU_RP2040
+#define USB_VID 0x2e8a
+#define USB_PID 0xf00a
+#define USB_MANUFACTURER "\"Raspberry
+#define USB_PRODUCT "\"Pico
+#define PICO_CYW43_ARCH_THREADSAFE_BACKGROUND 1
+#define CYW43_LWIP 0
+#define LWIP_IPV6 0
+#define LWIP_IPV4 1
+#define LWIP_IGMP 1
+#define LWIP_CHECKSUM_CTRL_PER_NETIF 1
+#define ARDUINO_VARIANT "rpipicow"
+#define ARM_MATH_CM0_FAMILY 1
+#define ARM_MATH_CM0_PLUS 1
+#define SERIALUSB_PID 0xf00a
+#define USBD_MAX_POWER_MA 250
+#define F_CPU 133000000L
 #define ARDUINO 108010
-#define ARDUINO_AVR_NANO 1
-#define ARDUINO_ARCH_AVR 1
+#define ARDUINO_RASPBERRY_PI_PICO_W 1
+#define BOARD_NAME "RASPBERRY_PI_PICO_W"
+#define ARDUINO_ARCH_RP2040 1
 #define __cplusplus 201103L
+#define __GNUC__ 7
 #define _Pragma(x)
-#define __AVR__
+#define __ARMCC_VERSION 6010050
+
+#define __PTRDIFF_TYPE__ int
+#define __ARM__
+//#define __arm__ 1
+#define always_inline
 #define __inline__
-#define __asm__(...)
+#define __asm__(x)
+#define __attribute__(x)
 #define __extension__
+#define __ATTR_PURE__
+#define __ATTR_CONST__
 #define __inline__
 #define __volatile__
-// Redefine __cplusplus to correct version: https://www.visualmicro.com/forums/YaBB.pl?num=1592217268
+#define _Pragma(x)
+#define __ASM
+#define __INLINE
+
+#define __INT32_TYPE__ long int
+#define __INTMAX_MAX__ 0x7fffffffffffffffLL
+#define STM32H747xx 1
+#define CORE_CM7
+#define __INTPTR_TYPE__ int
+#define __SIZE_TYPE__ unsigned int
+
+
+#define __ARM_COMPAT_H
 #undef __cplusplus
 #define __cplusplus 201103L
+#define __cplusplus__ 1
+#define DOXYGEN_ONLY 1
 
-//#define GCC_VERSION 40902
-//https://www.visualmicro.com/forums/YaBB.pl?num=1569762585/5#5
-#define __GNUC__             5
-#define __GNUC_MINOR__       4
-#define __GNUC_PATCHLEVEL__  0
-#define GCC_VERSION ((__GNUC__*10000)+(__GNUC_MINOR__*100)+__GNUC_PATCHLEVEL__)) 
+typedef void* common_type_t;
+typedef  int PinName;
+#define PinName int
+typedef  int PinMode;
+#define PinMode int
+#define _GLIBCXX_CSTRING 1
+#define _BASIC_IOS_H 1
+#define __COMPAT_H__ 1
+//#define  _STDLIB_H_ 1
+typedef void* __builtin_va_list;
 
-
-#define volatile(va_arg) 
-#define _CONST
-#define __builtin_va_start
-#define __builtin_va_end
-#define __attribute__(...)
-#define NOINLINE __attribute__((noinline))
-#define prog_void
-#define PGM_VOID_P int
-
-
-#ifndef __builtin_constant_p
-	#define __builtin_constant_p __attribute__((__const__))
-#endif
-#ifndef __builtin_strlen
-	#define __builtin_strlen  __attribute__((__const__))
-#endif
-
-
-#define NEW_H
-typedef void *__builtin_va_list;
-//extern "C" void __cxa_pure_virtual() {;}
-
-typedef int div_t;
-typedef int ldiv_t;
-
-
-typedef void *__builtin_va_list;
-//extern "C" void __cxa_pure_virtual() {;}
-
-
-
+class VM_DBG {
+public:
+	// Send a Message to the Serial Monitor via WiFi Connection 
+	void sendUserMessage(const char* theMessage) {};
+} MicroDebug;
 #include <arduino.h>
 #include <pins_arduino.h> 
-//#undef F
-//#define F(string_literal) ((const PROGMEM char *)(string_literal))
-#undef PSTR
-#define PSTR(string_literal) ((const PROGMEM char *)(string_literal))
+#include <picow_digital.cpp> 
+#include <picow_init.cpp> 
+#undef INPUT
+#define INPUT 0x0
+#undef OUTPUT
+#define OUTPUT 0x1
+#undef LOW
+#define LOW 0u
+#undef HIGH
+#define HIGH 1u
 
-//typedef unsigned char uint8_t;
-//typedef unsigned int uint8_t;
+// Additions to override the introduced code from overrides.h which confuses intellisense
+#undef _GLIBCXX_DEFAULT_ABI_TAG
+#define _GLIBCXX_DEFAULT_ABI_TAG 
+#undef _GLIBCXX_HOSTED
+#define _GLIBCXX_HOSTED 0
 
-#define pgm_read_byte_near(address_short) uint8_t()
-#define pgm_read_byte(address_short) uint8_t() 
-#define pgm_read_word(address_short) uint16_t() 
-#define pgm_read_dword(address_short) uint32_t()
-#define pgm_read_float(address_short) float()
-#define pgm_read_ptr(address_short)   short()
+void pinMode(int pinNumber, int pinMode);
+void pinMode(int pinNumber, int pinMode) {}
+void digitalWrite(unsigned int pinNumber, PinStatus status);
+void digitalWrite(unsigned int pinNumber, PinStatus status) {}
+void digitalWrite(unsigned int pinNumber, unsigned int status);
+void digitalWrite(unsigned int pinNumber, unsigned int status) {}
+PinStatus digitalRead(unsigned int pinNumber);
+PinStatus digitalRead(unsigned int pinNumber) {}
+int analogRead(int pinNumber);
+int analogRead(int pinNumber) {}
+void analogWrite(int pinNumber, int value) {}
+unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout) {}
+unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout) {}
+void shiftOut(int dataPin, int clockPin, BitOrder bitOrder, uint8_t val) {}
+uint8_t shiftIn(int dataPin, int clockPin, BitOrder bitOrder) {}
+void attachInterrupt(int interruptNumber, voidFuncPtr callback, PinStatus mode) {}
+void attachInterruptParam(int interruptNumber, voidFuncPtrParam callback, PinStatus mode, void* param) {}
+void detachInterrupt(int interruptNumber) {}
 
 #include "RobotCar.ino"
 #endif

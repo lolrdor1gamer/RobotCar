@@ -11,7 +11,7 @@
 
 #include "IR.h"
 #include "Motors.h"
-
+#include "WebApp.h"
 
 enum WorkingState
 {
@@ -39,5 +39,9 @@ int CheckSensors();
 
 void SetSide(struct LogicData* data, int signal);
 #pragma endregion LineMode
+
+#pragma region ControlledMode
+void ControlledMode(struct LogicData* data);
+#pragma endregion ControlledMode
 #endif
 

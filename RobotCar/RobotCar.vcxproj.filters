@@ -45,6 +45,9 @@
     <ClInclude Include="Logic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WebApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LED.cpp">
@@ -65,7 +68,10 @@
     <ClCompile Include="Screen.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Logic.c">
+    <ClCompile Include="Logic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WebApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

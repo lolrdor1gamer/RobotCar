@@ -18,6 +18,11 @@ int IRLevel(enum IRSide side)
 		return analogRead(IR_SENSOR_R);
 		break;
 	default:
+		return 0;
 		break;
 	}
+	return 0;
 }
+
+
+

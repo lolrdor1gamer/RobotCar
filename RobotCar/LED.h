@@ -9,7 +9,7 @@
 	#include "WProgram.h"
 #endif
 
-#include "FastLED.h"
+//#include "FastLED.h"
 
 //#pragma region LEDPreferences
 #define LED_COUNT 5
@@ -22,8 +22,8 @@ enum LEDSide
 	LEDRight,
 	LEDBoth
 };
-
-struct Blinking
+/*
+class  Blinking
 {
 public:
 	boolean IsNeededToBlink;
@@ -58,12 +58,11 @@ public:
 
 	void OneColorStripe(LEDSide side, byte cr, byte cg, byte cb);
 	void OneColorStripe(LEDSide side, CRGB color);
-
 	void SetupLEDs();
 
 	void Blink(Blinking* blinking);
 private:
 
-};
+};*/
 
 #endif

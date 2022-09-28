@@ -1,5 +1,5 @@
 #include "LED.h"
-
+/*
 void LED::OneColorStripe(LEDSide side, byte cr, byte cg, byte cb)
 {
     switch (side)
@@ -62,22 +62,22 @@ void LED::SetupLEDs()
 {
     controllers[0] = &FastLED.addLeds<WS2811, LEFT_LED, GRB>(l_leds, LED_COUNT);
     controllers[1] = &FastLED.addLeds<WS2811, RIGHT_LED, GRB>(r_leds, LED_COUNT);
-    //OneColorStripe(LEDSide::LEDBoth, 255, 255, 255);
+    OneColorStripe(LEDSide::LEDBoth, 0, 0, 0);
 }
 
 void LED::Blink(Blinking* blinking)
 {
-    /*if (blinking->LEDCounter == blinking->LEDAmount - 1)
-    {
-        blinking->LEDCounter = blinking->LEDStart;
-    }*/
+    //if (blinking->LEDCounter == blinking->LEDAmount - 1)
+    //{
+    //    blinking->LEDCounter = blinking->LEDStart;
+    //}
     if (blinking->LEDCounter == blinking->LEDAmount - 1)
     {
         blinking->IsNeededToBlink = false;
         return;
     }
-    //OneColorStripe(blinking->Side, 0, 0, 0);
+    OneColorStripe(blinking->Side, 0, 0, 0);
     l_leds[blinking->LEDCounter] = blinking->Color;
     blinking->LEDCounter++;
 }
-
+*/

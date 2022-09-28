@@ -16,13 +16,17 @@ void CheckWorkingState(struct LogicData* data)
 	case Random:
 		break;
 	case Controlled:
+		ControlledMode(data);
 		break;
 	default:
 		break;
 	}
 }
 
-
+void ControlledMode(struct LogicData* data)
+{
+	//WebUtil* util = WebUtil.Instance;
+}
 void LineMode(struct LogicData* data)
 {
 	SetSide(data, CheckSensors());
