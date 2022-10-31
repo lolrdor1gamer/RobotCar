@@ -4,11 +4,11 @@
 #define _LED_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+#include "arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
-
+#pragma once
 //#include "FastLED.h"
 
 //#pragma region LEDPreferences
@@ -16,11 +16,10 @@
 
 #define LEFT_LED 5
 #define RIGHT_LED 6
-enum LEDSide
-{
-	LEDLeft = 0,
-	LEDRight,
-	LEDBoth
+enum LEDSide {
+  LEDLeft = 0,
+  LEDRight,
+  LEDBoth
 };
 /*
 class  Blinking

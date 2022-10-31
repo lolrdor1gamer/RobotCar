@@ -4,22 +4,33 @@
 #define _IR_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+#include "arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
+
+
 #pragma region IRPreferences
+
+
+
 #define IR_SENSOR_L A2
 #define IR_SENSOR_C A1
 #define IR_SENSOR_R A0
 
-enum IRSide
-{
-	IRLeft = 0,
-	IRCenter,
-	IRRight
-};
-#pragma endregion IRPreferences
+typedef enum IRSide {
+  IRLeft = 0,
+  IRCenter,
+  IRRight
+} IRSide;
 
-int IRLevel(enum IRSide side);
+
+#pragma endregion IRPreferences
+#pragma once
+
+
+int IRLevel(IRSide side);
+
+
+
 #endif

@@ -4,10 +4,14 @@
 #define _ULTRASONIC_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+#include "arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
+
+
+#pragma once
+
 
 #pragma region UltrasonicPreferences
 #define L_TRIG_PIN 8
@@ -19,15 +23,14 @@
 #define R_TRIG_PIN 4
 #define R_ECHO_PIN 3
 
-enum USSSide
-{
-	USSLeft = 0,
-	USSCenter,
-	USSRight
-};
+typedef enum USSSide {
+  USSLeft = 0,
+  USSCenter,
+  USSRight
+} USSSide;
 #pragma endregion Ultrasonic
 
-double SonarDist(enum USSSide side);
+double SonarDist(USSSide side);
 
 
 #endif
